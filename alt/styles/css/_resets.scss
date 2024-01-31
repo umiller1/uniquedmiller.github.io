@@ -1,0 +1,22 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html {
+    font-size: 100%;
+}
+a, a:visited {
+     text-decoration: none;
+}
+ul li {
+    list-style-type: none;
+}
+button, input, textarea {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+img, svg {
+    width: 1rem;
+}

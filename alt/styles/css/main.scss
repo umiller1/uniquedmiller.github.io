@@ -1,0 +1,533 @@
+@use '_resets.scss';
+//Project Name: Unique D Miller's Portfolio
+//Author: Unique Miller
+//Version: 3.0
+//Table of Contents in SCSS
+// 1. Font Kits
+// 2. Variables
+// 3. Mixins
+// 4. General Styles
+// 5. Header & Intro
+// 6. Main Navigation
+// 7. Projects Section
+// 7.5. Behance Section
+// 8. About Section
+// 15(to change). Footer
+//---------------------------------------------------------
+// 1. Font Kits
+@font-face {
+    font-family: 'pl';
+    src: url('../fonts/poppins-light-webfont.woff2') format('woff2'),
+         url('../fonts/poppins-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'pm';
+    src: url('../fonts/poppins-medium-webfont.woff2') format('woff2'),
+         url('../fonts/poppins-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'pr';
+    src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
+         url('../fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'pb';
+    src: url('../fonts/poppins-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/poppins-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'staat';
+    src: url('../fonts/staatliches-regular-webfont.woff2') format('woff2'),
+         url('../fonts/staatliches-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+// 2. Variables
+// color variables
+$blk: #050505;
+$grey: #272727;
+$wht: #FAFAFA;
+$main: #008787;
+$acc: #D43400;
+$blur: rgba(49, 49, 49, 0.9);
+// font variables
+$light: 'pl', sans-serif;
+$reg: 'pr', sans-serif;
+$med: 'pm', sans-serif;
+$bold: 'pb', sans-serif;
+$head: 'staat', fantasy;
+// spacing and layout variables
+$gridcol: auto;
+$gridrow: auto;
+$spc: 0px auto;
+$lspc: 0px auto 0px auto;
+$size: 1.125rem;
+$flow: row wrap;
+$contain: 95%;
+// 3. Mixins
+@mixin font($light, $size) {
+    font-family: $light;
+    font-size: $size;
+    font-weight: normal;
+    font-style: normal;
+}
+@mixin marg($spc) {
+    margin: $spc;
+}
+@mixin padd($spc) {
+    padding: $spc;
+}
+@mixin margl($lspc) {
+    margin: $lspc;
+}
+@mixin paddl($lspc) {
+    padding: $lspc;
+}
+@mixin flex($flow) {
+    display: flex;
+    flex-flow: $flow;
+}
+@mixin grid($gridcol, $gridrow) {
+    display: grid;
+    grid-template-columns: $gridcol;
+    grid-template-rows: $gridrow;
+}
+@mixin contain($contain) {
+    width: $contain;
+    max-width: 1000px;
+    margin: 0px auto;
+}
+@mixin imgsize($size) {
+    width: $size;
+    height: $size;
+}
+//media query mixins
+@mixin lapl {
+  @media (min-width: 1600px) { @content; }
+}
+@mixin tab {
+  @media (max-width: 875px) and (min-width: 551px) { @content; }
+}
+@mixin mob {
+  @media (max-width: 550px) { @content; }
+}
+
+// 4. General Styling
+html {
+    scroll-behavior: smooth;
+}
+h1, h2, .btn, nav a, #hero a, label {
+    @include font($head, $size);
+    letter-spacing: 0.03em;
+}
+h3, p, a, li, input, textarea {
+    @include mob {
+        font-size: 1rem;
+    }
+    @include font($light, $size);
+    line-height: 1.25em;
+}
+a {
+    color: $blk;
+    transition: all 0.5s;
+    &:hover {
+        color: $acc;
+    }
+}
+.btn {
+    display: block;
+    color: white;
+    background-color: $acc;
+    padding: 10px 25px;
+    min-width: 150px;
+    text-align: center;
+    border: 3px solid $acc;
+    letter-spacing: 0.1em;
+    box-shadow: -3px 3px 4px 0px rgba(13, 43, 89, 0.25);
+    transition: all 0.5s;
+    &:hover {
+        background-color: transparent;
+        color: $acc;
+    } 
+}
+.btn.alt {
+    background-color: transparent;
+    color: $acc;
+    &:hover {
+        background-color: $acc;
+        color: $wht;
+    } 
+}
+
+// 5. Header & Intro
+header {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto minmax(0px, 1fr) auto;
+    .logo {
+        @include mob {
+            @include contain(70px);
+            padding: 10px 0px;
+        }
+        @include contain(100px);
+        display: block;
+        padding: 25px 0px;
+    }
+    .logo svg {
+        width: 100%;
+    }
+}
+
+#hero {
+    @include contain(80%);
+    position: relative;
+    border: 5px solid $blk;
+    display: flex;
+    flex-direction: column;
+    h1 {
+        @include mob {
+            font-size: 2rem;
+            padding: 5px 0px;
+        }
+        background-color: $wht;
+        margin-left: -25px;
+        margin-top: 30px;
+        padding: 15px 0px;
+        font-size: 4rem;
+        line-height: 1.25em;
+        color: $main;
+    }
+    .content {
+        padding-left: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+        p {
+            max-width: 500px;
+        }
+        div {
+            padding-bottom: 12.5px;
+            h3 {
+                @include mob {
+                    margin-top: 10px;
+                }
+                color: $main;
+                font-size: 0.75rem;
+                font-family: $bold;
+                letter-spacing: 0.1em;
+                margin: 25px 0px 5px;
+            }
+        }
+    }
+    .socials {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        direction: rtl;
+        gap: 10px 15px;
+        svg {
+            width: 1.125rem;
+            height: 1.125rem;
+        }
+    }
+    .inner-links {
+        @include mob {
+            flex-direction: column;
+        }
+        display: flex;
+        gap: 10px 25px;
+        flex-wrap: wrap;
+        a {
+            @include mob {
+                font-size: 1.125rem;
+            }
+            font-size: 1.5rem;
+        }
+    }
+}
+.outer-links {
+    @include mob {
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    @include contain(80%);
+    display: flex;
+    gap: 10px 25px;
+    flex-wrap: wrap;
+    padding: 12.5px 0px 50px 30px;
+    a {
+        @include mob {
+            font-size: 1.125rem
+        }
+        @include font($head, 1.5rem);
+    }
+}
+
+// 6. Main Navigation
+nav {
+    background-color: $grey;
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+    div {
+        @include contain(80%);
+        display: flex;
+        flex-wrap: wrap;     
+        align-items: center;
+        justify-content: space-between;
+    }
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 25px;
+        @include mob {
+            display: none;
+        }
+    }
+    ul a {
+        display: block;
+        color: $wht;
+        font-size: 1.5rem;
+    }
+    a.btn {
+        display: block;
+        color: $wht;
+        font-size: 1.5rem;
+        margin: 10px 0px;
+    }
+}
+#hamburger {
+    @include mob {
+        display: block;
+    }
+    display: none;
+    cursor: pointer;
+    span {
+        display: block;
+        background-color: $wht;
+        height: 3px;
+        width: 30px;
+        margin-top: 5px;
+        border-radius: 2px;
+        transition: all 0.5s;
+        &:first-of-type {
+            margin-top: 0px;
+        }
+    }
+}
+.mobstyle {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    div {
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 25px 0px;
+        gap: 25px;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        li {
+            &:first-child {
+                margin-top: 12px;
+            }
+        }
+    }
+    #hamburger {
+        span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        span:nth-child(2) {
+            opacity: 0;
+            visibility: 0;
+            width: 0px;
+        }
+    }
+}
+
+// 7. Projects Section
+#p1 {
+    @include mob {
+        background: linear-gradient(270deg, rgba(250, 250, 250, 0.8) 30.21%, #FAFAFA 68.75%), url(../imgs/pa/showcase-mockup.jpg), lightgray 50% / cover no-repeat;
+        background-position: center;
+    }
+    background: linear-gradient(270deg, rgba(250, 250, 250, 0.00) 30.21%, #FAFAFA 68.75%), url(../imgs/pa/showcase-mockup.jpg), lightgray 50% / cover no-repeat;
+    background-position: center;
+}
+#p2 {
+    @include mob {
+        background: linear-gradient(270deg, rgba(250, 250, 250, 0.8) 30.21%, #FAFAFA 68.75%), url(../imgs/pa/showcase-mockup.jpg), lightgray 50% / cover no-repeat;
+        background-position: center;
+    }
+    background: linear-gradient(270deg, rgba(250, 250, 250, 0.00) 30.21%, #FAFAFA 68.75%), url(../imgs/pa/showcase-mockup.jpg), lightgray 50% / cover no-repeat;
+    background-position: center;
+}
+#p3 {
+    @include mob {
+        background: linear-gradient(270deg, rgba(250, 250, 250, 0.8) 30.21%, #FAFAFA 68.75%), url(../imgs/sm/milleru_savantminimalist-mockup.jpg), lightgray 50% / cover no-repeat;
+        background-position: center;
+    }
+    background: linear-gradient(270deg, rgba(250, 250, 250, 0.00) 30.21%, #FAFAFA 68.75%), url(../imgs/sm/milleru_savantminimalist-mockup.jpg), lightgray 50% / cover no-repeat;
+    background-position: center;
+}
+.project {
+    min-height: 25vh;
+}
+.project .content {
+    @include contain(80%);
+    padding: 45px 0px;
+    .heading {
+        position: relative;
+        z-index: 1;
+        h2, p {
+            color: $main;
+        }
+        p {
+            font-family: $head;
+            font-size: 5rem;
+            position: absolute;
+            top: 0px;
+            z-index: -1;
+            opacity: 0.2;
+            mix-blend-mode: color-burn;
+        }
+        h2 {
+            font-size: 4rem;
+            padding-top: 50px;
+        }
+    }
+    p:not(.heading p) {
+        margin: 5px 0px 25px;
+        max-width: 400px;
+    }
+    .buttons {
+        @include mob {
+            flex-direction: column;
+            a {
+                flex: 1;
+            }
+        }
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+}
+
+// 7.5. Behance Section
+.behance {
+    padding: 40px 0px;
+    background: radial-gradient(at top center, #111, #1119, #1110), url(../imgs/pattern-by-pawel-czerwinski.jpg);
+    background-size: cover;
+    color: $wht;
+    .content {
+        @include contain(80%);
+        @include flex(column wrap);
+        align-items: center;
+        text-align: center;
+        h2 {
+            font-size: 4rem;
+            letter-spacing: 0.1em;
+        }
+        p {
+            margin: 10px 0px 15px;
+        }
+    }
+}
+
+// 8. About Section
+#about {
+    background-color: $grey;
+    padding: 25px 0px;
+    color: $wht;
+    .content-container {
+        @include contain(80%);
+    }
+    h2 {
+        @include mob {
+            font-size: 2rem;
+            line-height: 1.25em;
+            text-align: left;
+        }
+        font-size: 3rem;
+        text-align: center;
+    }
+    .abt-me {
+        @include mob {
+            @include flex(column wrap);
+            gap: 25px;
+        }
+        margin: 25px auto;
+        display: grid;
+        grid-template-columns: 60% 40%;
+        gap: 50px;
+        .txts p:first-child {
+            margin-bottom: 25px;
+        }
+    }
+    .favs h3 {
+        font-family: $head;
+        font-size: 1.5rem;
+        letter-spacing: 0.03em;
+        margin: 20px 0px 5px;
+        &:first-of-type {
+            margin-top: 0px;
+        }
+    }
+    .favs ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 25px;
+        li {
+            font-size: 1rem;
+        }
+    }
+    .btns {
+        @include mob {
+            flex-direction: column;
+            gap: 25px;
+        }
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        .btn {
+            flex: 60%;
+            &:last-of-type {
+                flex: 40%;
+            }
+        }
+    }
+}
+
+// 9. Footer
+footer {
+    @include contain(80%);
+    padding: 15px 0px;
+    text-align: center;
+    p {
+        font-size: 1rem;
+    }
+}
