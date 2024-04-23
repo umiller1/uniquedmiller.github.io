@@ -8,7 +8,7 @@
 // 3. Mixins
 // 4. General Styles
 // 5. Header & Intro
-// 6. Main Navigation
+// 5.5. Main Navigation
 // 7. Projects Section
 // 7.5. Behance Section
 // 8. About Section
@@ -129,6 +129,12 @@ $contain: 95%;
 html {
     scroll-behavior: smooth;
 }
+body {
+    @include font($light, $size);
+    @include mob {
+        font-size: 1rem;
+    }
+}
 
 // 5. Header & Intro
 header {
@@ -137,19 +143,32 @@ header {
     background-size: cover;
 }
 
-// 6. Main Navigation
+// 5.5. Main Navigation
 nav .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 10%;
+    padding: 20px 0px;
+    width: 90%;
+    max-width: 1250px;
+    margin: 0px auto 0px;
+    @include mob {
+        flex-direction: column;
+    }
+}
+nav .container div:first-child {
+    display: flex;
+    gap: 25px;
+}
+nav a {
+    color: #050505;
 }
 
-// 7. Projects Section
+// 6. Projects Section
 
 
-// 7.5. Behance Section
+// 6.5. Behance Section
 
 
-// 8. About Section
+// 7. About Section
 
