@@ -62,12 +62,12 @@ html {
 }
 
 body {
-  font-family: "pl", sans-serif;
+  font-family: "pr", sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   font-style: normal;
 }
-@media (max-width: 550px) {
+@media (max-width: 650px) {
   body {
     font-size: 1rem;
   }
@@ -91,16 +91,32 @@ nav .container {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 20px 0px;
-  width: 90%;
+  width: 95%;
   max-width: 1250px;
   margin: 0px auto 0px;
 }
-@media (max-width: 550px) {
+nav .container .logo {
+  text-align: center;
+  font-family: "staat", fantasy;
+  font-size: 2rem;
+  font-weight: normal;
+  font-style: normal;
+}
+nav .container .logo p:last-child {
+  font-family: "pl", sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: 0.25em;
+  margin-top: 5px;
+}
+@media (max-width: 650px) {
   nav .container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    gap: 15px;
   }
 }
 
@@ -112,5 +128,18 @@ nav .container div:first-child {
 }
 
 nav a {
+  font-family: "pr", sans-serif;
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-style: normal;
   color: #050505;
+}
+
+.hero-content {
+  width: 95%;
+  max-width: 1000px;
+  margin: 0px auto;
+}
+.hero-content h1 {
+  color: #0ac3c3;
 }

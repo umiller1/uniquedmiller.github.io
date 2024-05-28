@@ -7,8 +7,9 @@
 // 2. Variables
 // 3. Mixins
 // 4. General Styles
-// 5. Header & Intro
-// 5.5. Main Navigation
+// 5. Header
+// 5.1. Main Navigation
+// 5.2. Intro
 // 7. Projects Section
 // 7.5. Behance Section
 // 8. About Section
@@ -60,8 +61,8 @@
 $blk: #050505;
 $grey: #272727;
 $wht: #FAFAFA;
-$main: #008787;
-$acc: #D43400;
+$main: #ff0055;
+$acc: #0ac3c3;
 $blur: rgba(49, 49, 49, 0.9);
 // font variables
 $light: 'pl', sans-serif;
@@ -122,7 +123,7 @@ $contain: 95%;
   @media (max-width: 875px) and (min-width: 551px) { @content; }
 }
 @mixin mob {
-  @media (max-width: 550px) { @content; }
+  @media (max-width: 650px) { @content; }
 }
 
 // 4. General Styling
@@ -130,30 +131,40 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    @include font($light, $size);
+    @include font($reg, $size);
     @include mob {
         font-size: 1rem;
     }
 }
 
-// 5. Header & Intro
+// 5. Header
 header {
     height: 100dvh;
     background: linear-gradient(0deg, #fffd, #fffd), url(../imgs/sm/milleru_savantminimalist-mockup.jpg);
     background-size: cover;
 }
 
-// 5.5. Main Navigation
+// 5.1. Main Navigation
 nav .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0px;
-    width: 90%;
+    width: 95%;
     max-width: 1250px;
     margin: 0px auto 0px;
+    .logo {
+        text-align: center;
+        @include font($head, 2rem);
+        p:last-child {
+            @include font($light, 1rem);
+            letter-spacing: 0.25em;
+            margin-top: 5px;
+        }
+    }
     @include mob {
         flex-direction: column;
+        gap: 15px;
     }
 }
 nav .container div:first-child {
@@ -161,11 +172,17 @@ nav .container div:first-child {
     gap: 25px;
 }
 nav a {
+    @include font($reg, 1.25rem);
     color: #050505;
 }
 
-// 6. Projects Section
-
+// 5.2 Intro Section
+.hero-content {
+    @include contain($contain);
+    h1 {
+        color: $acc;
+    }
+}
 
 // 6.5. Behance Section
 
