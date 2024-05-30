@@ -136,12 +136,64 @@ body {
         font-size: 1rem;
     }
 }
+.btn {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: $main;
+    // box-shadow: 3px 3px 0px #ff0055;
+    color: $wht;
+    transition: 0.5s all;
+    &::after, &::before {
+        content:'';
+        display: block;
+        height: 10px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        background-color: $main;
+        transition: 0.5s all;
+    }
+    &::after {
+        bottom: 0;
+    }
+    &::before {
+        top: 0;
+    }
+    &:hover {
+        background-color: transparent;
+        &::after {
+            bottom: 30%;
+            padding: 10px 0px;
+        }
+        &::before {
+            top: 30%;
+            padding: 10px 0px;
+        }
+    }
+
+}
 
 // 5. Header
 header {
     height: 100dvh;
-    background: linear-gradient(0deg, #fffd, #fffd), url(../imgs/sm/milleru_savantminimalist-mockup.jpg);
+    background: linear-gradient(145deg, #fffd, #fffd), url(../imgs/sm/milleru_savantminimalist-mockup.jpg);
     background-size: cover;
+    position: relative;
+    z-index: 1;
+    .s-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(145deg, #fff0 50%, $acc 50%);
+        mix-blend-mode: color-burn;
+    }
 }
 
 // 5.1. Main Navigation
