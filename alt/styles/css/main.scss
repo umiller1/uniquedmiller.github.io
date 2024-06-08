@@ -3,6 +3,7 @@
 //Author: Unique Miller
 //Version: 3.0
 //Table of Contents in SCSS
+// 0. Animations
 // 1. Font Kits
 // 2. Variables
 // 3. Mixins
@@ -15,6 +16,7 @@
 // 8. About Section
 // 15(to change). Footer
 //---------------------------------------------------------
+// 0. Animations
 // 1. Font Kits
 @font-face {
     font-family: 'pl';
@@ -62,7 +64,8 @@ $blk: #050505;
 $grey: #272727;
 $wht: #FAFAFA;
 $main: #ff0055;
-$acc: #0ac3c3;
+$sec: #FFEA00;
+$acc: #00C9FF;
 $blur: rgba(49, 49, 49, 0.9);
 // font variables
 $light: 'pl', sans-serif;
@@ -120,10 +123,11 @@ $contain: 95%;
   @media (min-width: 1600px) { @content; }
 }
 @mixin tab {
-  @media (max-width: 875px) and (min-width: 551px) { @content; }
+  @media (max-width: 1280px) and (min-width: 876px) { @content; }
 }
 @mixin mob {
-  @media (max-width: 650px) { @content; }
+  @media (max-width: 575px) { @content; }
+//    change to 875px
 }
 
 // 4. General Styling
@@ -136,13 +140,18 @@ body {
         font-size: 1rem;
     }
 }
+h1, h2 {
+    @include font($head, 2.5rem)
+}
+p {
+    line-height: 1.25em;
+}
 .btn {
     position: relative;
     z-index: 1;
     display: inline-block;
     padding: 15px 25px;
     background-color: $main;
-    // box-shadow: 3px 3px 0px #ff0055;
     color: $wht;
     transition: 0.5s all;
     &::after, &::before {
@@ -179,10 +188,12 @@ body {
 // 5. Header
 header {
     height: 100dvh;
-    background: linear-gradient(145deg, #fffd, #fffd), url(../imgs/sm/milleru_savantminimalist-mockup.jpg);
+    background: linear-gradient(145deg, #fffd 50%, #fffa 50%), url(../imgs/sm/milleru_savantminimalist-mockup.jpg);
     background-size: cover;
     position: relative;
     z-index: 1;
+    display: grid;
+    grid-template-rows: max-content 1fr max-content;
     .s-overlay {
         position: absolute;
         top: 0;
@@ -192,7 +203,7 @@ header {
         width: 100%;
         height: 100%;
         background: linear-gradient(145deg, #fff0 50%, $acc 50%);
-        mix-blend-mode: color-burn;
+        mix-blend-mode: color;
     }
 }
 
@@ -206,12 +217,19 @@ nav .container {
     max-width: 1250px;
     margin: 0px auto 0px;
     .logo {
-        text-align: center;
         @include font($head, 2rem);
+        text-align: center;
+        display: block;
+        transition: color 0.5s;
         p:last-child {
             @include font($light, 1rem);
             letter-spacing: 0.25em;
-            margin-top: 5px;
+            padding: 5px 10px;
+            position: relative;
+            z-index: 1;
+        }
+        &:hover {
+            color: $main;
         }
     }
     @include mob {
@@ -219,7 +237,7 @@ nav .container {
         gap: 15px;
     }
 }
-nav .container div:first-child {
+nav .container div:last-child {
     display: flex;
     gap: 25px;
 }
@@ -231,12 +249,138 @@ nav a {
 // 5.2 Intro Section
 .hero-content {
     @include contain($contain);
+    @include flex(column wrap);
+    justify-content: center;
+    align-items: center;
     h1 {
-        color: $acc;
+        color: $main;
+        font-size: 5vw;
+        text-align: center;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            transition: all 0.5s;
+            &:last-child {
+                visibility: hidden;
+                opacity: 0;
+            }
+            &:first-child {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+        }
+        &:hover {
+            span:last-child{
+                visibility: visible;
+                opacity: 1;
+            }
+            span:first-child{
+                visibility: hidden;
+                opacity: 0;
+            }
+        }
+        @include tab {
+            font-size: 8vw;
+        }
+    }
+    p {
+        max-width: 500px;
+        margin: 10px 0px 25px;
+    }
+    div {
+        display: flex;
+        gap: 25px;
+    }
+}
+#scroll {
+    @include font($light, 1rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 0.5em;
+    letter-spacing: 0.5em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    .diamond {
+        position: absolute;
+        background: linear-gradient(135deg, $sec 50%, $main 50%);
+        aspect-ratio: 1 / 1;
+        height: 100%;
+        z-index: -1;
+        transform-origin: center;
+        transform: translateY(50%) rotate(45deg);
+        transition: 
+            transform 0.8s
+        ;
+    }
+    .txt {
+        aspect-ratio: 1 / 1;
+        height: 10.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        transition: 
+            color 0.5s
+        ;
+        span {
+            display: block;
+            margin-bottom: 1.25rem;
+        }
+        &:hover {
+            color: $wht;
+            & ~ .diamond {
+                transform-origin: center;
+                transform: translateY(50%) rotate(-135deg);
+                color: $wht;
+            }
+        }
+    }
+} 
+
+// 6. Projects Section
+#projects .card{
+    position: relative;
+    z-index: 1;
+    background-image: url(../imgs/sm/milleru_savantminimalist-mockup.jpg);
+    background-size: cover;
+    .container {
+        @include contain($contain);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: ". cont";
+    }
+    .content {
+        grid-area: cont;
+        padding: 100px 0px 100px 25px;
+    }
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        .btn {
+            flex: 1;
+        }
+    }
+    .cblock {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 50%;
+        z-index: -1;
+        background-color: #00C9FF55;
+        backdrop-filter: blur(10px);
+        mix-blend-mode: color;
     }
 }
 
-// 6.5. Behance Section
 
 
 // 7. About Section
