@@ -80,7 +80,7 @@ $spc: 0px auto;
 $lspc: 0px auto 0px auto;
 $size: 1.125rem;
 $flow: row wrap;
-$contain: 95%;
+$contain: 85%;
 // 3. Mixins
 @mixin font($light, $size) {
     font-family: $light;
@@ -141,7 +141,10 @@ body {
     }
 }
 h1, h2 {
-    @include font($head, 2.5rem)
+    @include font($head, 2.5rem);
+    @include mob {
+        font-size: 2rem;
+    }
 }
 p {
     line-height: 1.25em;
@@ -153,6 +156,7 @@ p {
     padding: 15px 25px;
     background-color: $main;
     color: $wht;
+    text-align: center;
     transition: 0.5s all;
     &::after, &::before {
         content:'';
@@ -182,9 +186,45 @@ p {
             padding: 10px 0px;
         }
     }
-
 }
-
+.diamond {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    transform-origin: center;
+    transform: rotate(45deg);
+}
+.btn.diamond {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    transform: rotate(0deg);
+    background-color: transparent;
+    &::after, &::before {
+        content:'';
+        aspect-ratio: 1 / 1;
+        height: 100%;
+        transform-origin: center;
+        transform: rotate(45deg);
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        background-color: $main;
+        transition: 0.5s all;
+    }
+    &:hover {
+        &::after, &::before {
+            top: 0px;
+            bottom: auto;
+            padding: 0px;
+        }
+        &::before {
+            transform: rotate(0deg);
+            border: 0.5px solid $main;
+            background-color: transparent;
+        }
+    }
+}
 // 5. Header
 header {
     height: 100dvh;
@@ -209,27 +249,22 @@ header {
 
 // 5.1. Main Navigation
 nav .container {
+    @include contain($contain);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0px;
-    width: 95%;
-    max-width: 1250px;
-    margin: 0px auto 0px;
     .logo {
-        @include font($head, 2rem);
+        @include font($head, 2.5rem);
         text-align: center;
         display: block;
         transition: color 0.5s;
-        p:last-child {
-            @include font($light, 1rem);
-            letter-spacing: 0.25em;
-            padding: 5px 10px;
-            position: relative;
-            z-index: 1;
-        }
         &:hover {
             color: $main;
+        }
+        @include mob {
+            order: 1;
+            font-size: 1.5rem;
         }
     }
     @include mob {
@@ -240,9 +275,16 @@ nav .container {
 nav .container div:last-child {
     display: flex;
     gap: 25px;
+    @include mob {
+        order: 2;
+    }
 }
 nav a {
     @include font($reg, 1.25rem);
+    @include mob {
+        font-size: 1.125rem;
+        order: 3;
+    }
     color: #050505;
 }
 
@@ -253,38 +295,14 @@ nav a {
     justify-content: center;
     align-items: center;
     h1 {
-        color: $main;
-        font-size: 5vw;
+        color: $blk;
+        font-size: 3rem;
         text-align: center;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         span {
-            transition: all 0.5s;
-            &:last-child {
-                visibility: hidden;
-                opacity: 0;
-            }
-            &:first-child {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-            }
+            color: $acc;
         }
-        &:hover {
-            span:last-child{
-                visibility: visible;
-                opacity: 1;
-            }
-            span:first-child{
-                visibility: hidden;
-                opacity: 0;
-            }
-        }
-        @include tab {
-            font-size: 8vw;
+        @include mob {
+            font-size: 2rem;
         }
     }
     p {
@@ -310,10 +328,7 @@ nav a {
     .diamond {
         position: absolute;
         background: linear-gradient(135deg, $sec 50%, $main 50%);
-        aspect-ratio: 1 / 1;
-        height: 100%;
         z-index: -1;
-        transform-origin: center;
         transform: translateY(50%) rotate(45deg);
         transition: 
             transform 0.8s
@@ -359,6 +374,9 @@ nav a {
     .content {
         grid-area: cont;
         padding: 100px 0px 100px 25px;
+        p {
+            margin: 10px 0px 20px;
+        }
     }
     .buttons {
         display: flex;
@@ -381,7 +399,104 @@ nav a {
     }
 }
 
-
-
 // 7. About Section
+#about {
+    background-color: $grey;
+    color: $wht;
+    position: relative;
+    z-index: 1;
+    overflow-y: hidden;
+    .container {
+        @include contain($contain);
+    }
+    h2 {
+        color: $sec;
+    }
+    .abt-me {
+        padding: 25px 0px;
+        display: flex;
+        justify-content: space-between;
+        gap: 25px;
+        .txts {
+            @include flex(column wrap);
+            flex: 1;
+            gap: 25px;
+        }
+        .favs {
+            flex: 1;
+            h3 {
+                font-size: 1.25rem;
+            }
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.125em;
+                padding: 10px 0px;
+                margin-bottom: 20px;
+                border-bottom: 0.01px solid $acc;
+            }
+        }
+    }
+    .btns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+        padding-bottom: 50px;
+        a {
+            flex: 1;
+        }
+    }
+    .diamond {
+        background: linear-gradient(135deg, $main 50%, $acc 50%);
+        height: 50px;
+        transform: translateY(-50%) rotate(45deg);
+        &:last-child {
+            transform: translateY(50%) rotate(45deg);
+            margin-left: auto;
+            background: linear-gradient(135deg, $sec 50%, $main 50%);
+        }
+    }
+}
 
+// 8. About Section
+#nextsteps {
+    background-color: $sec;
+    padding: 50px 0px;
+    .container {
+        @include contain($contain);
+        text-align: center;
+    }
+    p {
+        margin-bottom: 15px;
+    }
+    h2 {
+        margin-top: 10px;
+    }
+    h4 {
+        @include font($head, 1rem);
+        margin: 5px 0px 25px;
+    }
+    .btns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6em;
+        padding-bottom: 50px;
+        margin-top: 5.5em;
+        a {
+            height: 11.5em;
+        }
+    }
+}
+
+// 9. Footer Section
+footer {
+    background-color: $grey;
+    color: $wht;
+    p {
+        @include contain($contain);
+        text-align: center;
+        padding: 25px 0px;
+    }
+}

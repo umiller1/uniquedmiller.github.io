@@ -79,6 +79,11 @@ h1, h2 {
   font-weight: normal;
   font-style: normal;
 }
+@media (max-width: 575px) {
+  h1, h2 {
+    font-size: 2rem;
+  }
+}
 
 p {
   line-height: 1.25em;
@@ -91,6 +96,7 @@ p {
   padding: 15px 25px;
   background-color: #ff0055;
   color: #FAFAFA;
+  text-align: center;
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
 }
@@ -124,6 +130,57 @@ p {
   padding: 10px 0px;
 }
 
+.diamond {
+  aspect-ratio: 1/1;
+  height: 100%;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.btn.diamond {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  aspect-ratio: 1/1;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  background-color: transparent;
+}
+.btn.diamond::after, .btn.diamond::before {
+  content: "";
+  aspect-ratio: 1/1;
+  height: 100%;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  background-color: #ff0055;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+.btn.diamond:hover::after, .btn.diamond:hover::before {
+  top: 0px;
+  bottom: auto;
+  padding: 0px;
+}
+.btn.diamond:hover::before {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  border: 0.5px solid #ff0055;
+  background-color: transparent;
+}
+
 header {
   height: 100dvh;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.8666666667) 50%, rgba(255, 255, 255, 0.6666666667) 50%), url(../imgs/sm/milleru_savantminimalist-mockup.jpg);
@@ -150,6 +207,9 @@ header .s-overlay {
 }
 
 nav .container {
+  width: 85%;
+  max-width: 1000px;
+  margin: 0px auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -160,13 +220,10 @@ nav .container {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 20px 0px;
-  width: 95%;
-  max-width: 1250px;
-  margin: 0px auto 0px;
 }
 nav .container .logo {
   font-family: "staat", fantasy;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: normal;
   font-style: normal;
   text-align: center;
@@ -174,18 +231,16 @@ nav .container .logo {
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
 }
-nav .container .logo p:last-child {
-  font-family: "pl", sans-serif;
-  font-size: 1rem;
-  font-weight: normal;
-  font-style: normal;
-  letter-spacing: 0.25em;
-  padding: 5px 10px;
-  position: relative;
-  z-index: 1;
-}
 nav .container .logo:hover {
   color: #ff0055;
+}
+@media (max-width: 575px) {
+  nav .container .logo {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    font-size: 1.5rem;
+  }
 }
 @media (max-width: 575px) {
   nav .container {
@@ -203,6 +258,13 @@ nav .container div:last-child {
   display: flex;
   gap: 25px;
 }
+@media (max-width: 575px) {
+  nav .container div:last-child {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+}
 
 nav a {
   font-family: "pr", sans-serif;
@@ -211,9 +273,17 @@ nav a {
   font-style: normal;
   color: #050505;
 }
+@media (max-width: 575px) {
+  nav a {
+    font-size: 1.125rem;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+}
 
 .hero-content {
-  width: 95%;
+  width: 85%;
   max-width: 1000px;
   margin: 0px auto;
   display: -webkit-box;
@@ -231,45 +301,16 @@ nav a {
           align-items: center;
 }
 .hero-content h1 {
-  color: #ff0055;
-  font-size: 5vw;
+  color: #050505;
+  font-size: 3rem;
   text-align: center;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 .hero-content h1 span {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  color: #00C9FF;
 }
-.hero-content h1 span:last-child {
-  visibility: hidden;
-  opacity: 0;
-}
-.hero-content h1 span:first-child {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-.hero-content h1:hover span:last-child {
-  visibility: visible;
-  opacity: 1;
-}
-.hero-content h1:hover span:first-child {
-  visibility: hidden;
-  opacity: 0;
-}
-@media (max-width: 1280px) and (min-width: 876px) {
+@media (max-width: 575px) {
   .hero-content h1 {
-    font-size: 8vw;
+    font-size: 2rem;
   }
 }
 .hero-content p {
@@ -310,11 +351,7 @@ nav a {
 #scroll .diamond {
   position: absolute;
   background: linear-gradient(135deg, #FFEA00 50%, #ff0055 50%);
-  aspect-ratio: 1/1;
-  height: 100%;
   z-index: -1;
-  -webkit-transform-origin: center;
-          transform-origin: center;
   -webkit-transform: translateY(50%) rotate(45deg);
           transform: translateY(50%) rotate(45deg);
   -webkit-transition: -webkit-transform 0.8s;
@@ -363,7 +400,7 @@ nav a {
   background-size: cover;
 }
 #projects .card .container {
-  width: 95%;
+  width: 85%;
   max-width: 1000px;
   margin: 0px auto;
   display: -ms-grid;
@@ -377,6 +414,9 @@ nav a {
   -ms-grid-column: 2;
   grid-area: cont;
   padding: 100px 0px 100px 25px;
+}
+#projects .card .content p {
+  margin: 10px 0px 20px;
 }
 #projects .card .buttons {
   display: -webkit-box;
@@ -402,4 +442,143 @@ nav a {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   mix-blend-mode: color;
+}
+
+#about {
+  background-color: #272727;
+  color: #FAFAFA;
+  position: relative;
+  z-index: 1;
+  overflow-y: hidden;
+}
+#about .container {
+  width: 85%;
+  max-width: 1000px;
+  margin: 0px auto;
+}
+#about h2 {
+  color: #FFEA00;
+}
+#about .abt-me {
+  padding: 25px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 25px;
+}
+#about .abt-me .txts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  gap: 25px;
+}
+#about .abt-me .favs {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+#about .abt-me .favs h3 {
+  font-size: 1.25rem;
+}
+#about .abt-me .favs ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1.125em;
+  padding: 10px 0px;
+  margin-bottom: 20px;
+  border-bottom: 0.01px solid #00C9FF;
+}
+#about .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 25px;
+  padding-bottom: 50px;
+}
+#about .btns a {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+#about .diamond {
+  background: linear-gradient(135deg, #ff0055 50%, #00C9FF 50%);
+  height: 50px;
+  -webkit-transform: translateY(-50%) rotate(45deg);
+          transform: translateY(-50%) rotate(45deg);
+}
+#about .diamond:last-child {
+  -webkit-transform: translateY(50%) rotate(45deg);
+          transform: translateY(50%) rotate(45deg);
+  margin-left: auto;
+  background: linear-gradient(135deg, #FFEA00 50%, #ff0055 50%);
+}
+
+#nextsteps {
+  background-color: #FFEA00;
+  padding: 50px 0px;
+}
+#nextsteps .container {
+  width: 85%;
+  max-width: 1000px;
+  margin: 0px auto;
+  text-align: center;
+}
+#nextsteps p {
+  margin-bottom: 15px;
+}
+#nextsteps h2 {
+  margin-top: 10px;
+}
+#nextsteps h4 {
+  font-family: "staat", fantasy;
+  font-size: 1rem;
+  font-weight: normal;
+  font-style: normal;
+  margin: 5px 0px 25px;
+}
+#nextsteps .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 6em;
+  padding-bottom: 50px;
+  margin-top: 5.5em;
+}
+#nextsteps .btns a {
+  height: 11.5em;
+}
+
+footer {
+  background-color: #272727;
+  color: #FAFAFA;
+}
+footer p {
+  width: 85%;
+  max-width: 1000px;
+  margin: 0px auto;
+  text-align: center;
+  padding: 25px 0px;
 }
