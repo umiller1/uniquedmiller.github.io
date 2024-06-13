@@ -393,6 +393,47 @@ nav a {
   color: #FAFAFA;
 }
 
+#projects #p-menu {
+  background-color: #FFEA00;
+}
+#projects #p-menu ul {
+  width: 85%;
+  max-width: 1000px;
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+#projects #p-menu li {
+  font-family: "staat", fantasy;
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-style: normal;
+  position: relative;
+  z-index: 2;
+  padding: 25px 12.5px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+#projects #p-menu li .diamond {
+  background: #FFEA00;
+  height: 25px;
+  margin-left: 5px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  position: absolute;
+  -webkit-transform: translateY(50%) rotate(45deg);
+          transform: translateY(50%) rotate(45deg);
+}
+#projects #p-menu li:hover {
+  background-color: #ff0055;
+}
+#projects #p-menu li:hover .diamond {
+  background-color: #ff0055;
+}
+
 #projects .card {
   position: relative;
   z-index: 1;

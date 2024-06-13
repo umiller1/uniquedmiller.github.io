@@ -360,6 +360,36 @@ nav a {
 } 
 
 // 6. Projects Section
+#projects #p-menu {
+    background-color: $sec;
+    ul {
+        @include contain($contain);
+        display: flex;
+        gap: 10px;
+    }
+    li {
+        @include font($head, 1.25rem);
+        position: relative;
+        z-index: 2;
+        padding: 25px 12.5px;
+        cursor: pointer;
+        transition: all 0.5s;
+        .diamond {
+            background: $sec;
+            height: 25px;
+            margin-left: 5px;
+            transition: all 0.5s;
+            position: absolute;
+            transform: translateY(50%) rotate(45deg);
+        }
+        &:hover {
+            background-color: $main;
+            .diamond {
+                background-color: $main;
+            }
+        }
+    }
+}
 #projects .card{
     position: relative;
     z-index: 1;

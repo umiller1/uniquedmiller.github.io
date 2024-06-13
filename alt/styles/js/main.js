@@ -1,3 +1,4 @@
+// navigation
 let hamburger = document.querySelector('#hamburger');
 let menu = document.querySelector('#mainnav');
 let anchors = document.querySelector('#mainnav ul');
