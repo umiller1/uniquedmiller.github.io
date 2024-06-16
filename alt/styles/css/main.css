@@ -405,6 +405,15 @@ nav a {
   display: flex;
   gap: 10px;
 }
+#projects #p-menu ul .active {
+  background-color: #ff0055;
+  color: #FAFAFA;
+}
+#projects #p-menu ul .active .diamond {
+  -webkit-transform: translateY(50%) rotate(45deg);
+          transform: translateY(50%) rotate(45deg);
+  background-color: #ff0055;
+}
 #projects #p-menu li {
   font-family: "staat", fantasy;
   font-size: 1.25rem;
@@ -428,15 +437,22 @@ nav a {
           transform: translateY(-50%) rotate(45deg);
   z-index: -1;
 }
-#projects #p-menu li .active {
-  -webkit-transform: translateY(50%) rotate(45deg);
-          transform: translateY(50%) rotate(45deg);
-}
 #projects #p-menu li:hover {
   background-color: #ff0055;
+  color: #FAFAFA;
 }
 #projects #p-menu li:hover .diamond {
   background-color: #ff0055;
+  -webkit-transform: translateY(50%) rotate(45deg);
+          transform: translateY(50%) rotate(45deg);
+}
+
+#projects .accord {
+  display: none;
+}
+
+#projects .accord.active {
+  display: block;
 }
 
 #projects .card {

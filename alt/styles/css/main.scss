@@ -366,6 +366,14 @@ nav a {
         @include contain($contain);
         display: flex;
         gap: 10px;
+        .active {
+            background-color: #ff0055;
+            color: $wht;
+            .diamond {
+                transform: translateY(50%) rotate(45deg);
+                background-color: $main
+            }
+        }
     }
     li {
         @include font($head, 1.25rem);
@@ -383,17 +391,23 @@ nav a {
             transform: translateY(-50%) rotate(45deg);
             z-index: -1;
         }
-        .active {
-            transform: translateY(50%) rotate(45deg);
-        }
         &:hover {
             background-color: $main;
+            color: $wht;
             .diamond {
                 background-color: $main;
+                transform: translateY(50%) rotate(45deg);
             }
         }
     }
 }
+#projects .accord {
+    display: none;
+}
+#projects .accord.active {
+    display: block;
+}
+
 #projects .card{
     position: relative;
     z-index: 1;
